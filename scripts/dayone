@@ -1,0 +1,7 @@
+#!python
+
+import baker
+
+import dayone.cli
+
+baker.run()
