@@ -46,8 +46,28 @@ class Entry(object):
     def starred(self, x):
         self._entry["Starred"] = bool(x)
 
+    # Tags
+    @property
+    def tags(self): return self._entry.get("Tags",[])
+    @tags.setter
+    def tags(self, x):
+        self._entry["Tags"] = list(x)
+    def addtag(self, tag):
+        if tag not in self._entry["Tags"]:
+            self._entry["Tags"].append(tag)
+    def rmtag(self, tag):
+        if tag in self._entry["Tags"]:
+            self._entry["Tags"].remove(tag)
+    def has_tag(self, tag):
+        return tag in self._entry["Tags"]
+        
     # Location not implemented yet
+    @property
+    def location(self): return self._entry.get("Location",{})
+    
     # Weather not implemented yet
+    @property
+    def weather(self): return self._entry.get("Weather",{})
 
     # Return the picture if there is one, not implemented yet
     @property
